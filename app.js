@@ -39,3 +39,17 @@ function saveXMLData(name, email) {
         console.error('Error saving XML data:', error);
     });
 }
+   try {
+       const docRef = await addDoc(collection(firestore, 'xmlData'), {
+           xml: xmlContent,
+           timestamp: new Date()
+       });
+       console.log('XML data saved with ID:', docRef.id);
+   } catch (e) {
+       console.error('Error adding document:', e);
+   }
+
+
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+
+const firestore = getFirestore(app);
